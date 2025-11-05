@@ -37,5 +37,13 @@ This study proposes a framework for cross-genre knowledge transfer in historical
 - We finally obtain a pool of `3500` LLM-annotated [fiction relevance judgments](fiction.qrels) and `3500` [non-fiction relevance judgments](nonfiction.qrels).
 - A randomly chosen `10% sample` of the annotations were validated by field experts which confirmed `100%` agreement.
 
-## Knowledge Tansfer and Evaluation
+## Cross-genre Knowledge Transfer 
+- We base our knowledge transfer framework on a [RLM-based query expansion](BL-RLM/) setup.
+- We apply following two cross-genre evaluation models.
+  - `Fiction(RLM)` RLM is trained on the fiction collection to learn narrative and semantic expansion terms, which are then applied to retrieve non-fiction documents.
+  - `Fiction-Nonfiction(RLM)` Combines the fiction and non-fiction subsets into a unified collection. RLM feedback is computed over this joint corpus, allowing the relevance model to incorporate term distributions and thematic signals from both genres.
+    
+
+## Evaluation
+
 
