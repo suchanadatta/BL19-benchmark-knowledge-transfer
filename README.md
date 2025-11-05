@@ -14,10 +14,28 @@ This study proposes a framework for cross-genre knowledge transfer in historical
 ## Topics
 - The selection of topics followed a structured, expert-informed process to ensure domain relevance and diversity.
 - Experts proposed candidate topics based on their knowledge of genres, historical issues, and key debates.
-- Through iterative consultation, `35` potential [queries]( were finalized, representing a balanced mix of fictional and non-fictional contexts. 
+- Through iterative consultation, `35` potential [queries](query.tsv) were finalized, representing a balanced mix of fictional and non-fictional contexts. 
 - Considering common searching patterns in both scholarly and public search behavior, we kept the queries intentionally with an average query length of `2.8`.
 
 ## LLM-assisted Relevance Judgements
+- For each of the `35` expert-curated queries, we retrieved the top `100` documents using the BM25.
+- We used `gpt-5-mini` to judge those documents.
+- Judgments were made on a graded relevance scale from '0' to '4'.
+  - `0` → Not Relevant,
+  - `1` → Marginally Relevant,
+  - `2` → Fairly Relevant,
+  - `3` → Highly Relevant, and
+  - `4` → Perfectly Relevant
+- We provided LLM with the `topic description` and the `document metadata`, instructing it to assess their relevance.
+- We used the following [prompt](codes/create_qrel.py) while assessing the documents by the LLM.
+<pre>
+	"You are a helpful assistant doing graded relevance assessment. Tell me whether the following snippet is relevant 
+   to the query or not. On a scale of 0 to 4, score the document where 0 indicates non-relevant and 4 being the highly 
+   relevant."
+</pre>
+- Each judgment has 4 attributes - `topic_id`, `unused Q0`, `paragraph_id`, `relevance_score`.
+- We finally obtain a pool of `3500` LLM-annotated [fiction relevance judgments](fiction.qrels) and `3500` [non-fiction relevance judgments](nonfiction.qrels).
+- A randomly chosen `10% sample` of the annotations were validated by field experts which confirmed `100%` agreement.
 
 ## Knowledge Tansfer and Evaluation
 
