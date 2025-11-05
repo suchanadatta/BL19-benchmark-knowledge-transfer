@@ -44,6 +44,4 @@ This study proposes a framework for cross-genre knowledge transfer in historical
   - `Fiction-Nonfiction(RLM)` Combines the fiction and non-fiction subsets into a unified collection. RLM feedback is computed over this joint corpus, allowing the relevance model to incorporate term distributions and thematic signals from both genres.
     
 
-## Evaluation
-
 
